@@ -4,10 +4,22 @@ A script that creates human readable symlinks for Proton game prefixes (Steam De
 # Prerequireties
 You need to install Protontricks from Discover on your Steam Deck, that's it.
 
-# Installation
-Download the [installer](https://github.com/Jannomag/shortix/releases/latest/download/shortix_installer.desktop) to the Desktop and double click it.
-Afterwards there's a new directory in you home directory, called Shortix. 
-In there you'll find all created symlinks / shortcuts to the installed games - which were found by Protontricks.
+# Installation (Automatic)
+Download the [installer](https://github.com/Jannomag/shortix/releases/latest/download/shortix_installer.desktop) to the Desktop and double click it.   
+Afterwards there's a new directory in you home directory, called Shortix.    
+In there you'll find all created symlinks / shortcuts to the installed games - which were found by Protontricks.    
+
+# Manual installation
+1. Go to the /tmp folder using `cd /tmp`
+2. Clone this repo with `git clone https://github.com/Jannomag/shortix`
+3. Create Shortix directory with `mkdir -p /home/deck/Shortix`
+4. Copy the script with `cp /tmp/shortix/shortix.sh /home/deck/Shortix`
+5. Copy the systemd service with `cp /tmp/shortix/shortix.service /home/deck/.config/systemd/user`
+6. Reload systemd daemon with `systemctl --user daemon-reload`
+7. Enable service with `systemctl --user enable shortix.service`
+8. Start service with `systemctl --user start shortix.service`
+9. Done (all those steps does the `shortix_installer.sh` for you
+
 
 # Background and explanation
 I just wanted to have easier access to the prefixes for the games on my Steam Deck, so I created Shortix.
@@ -20,6 +32,8 @@ What it does is really simple:
 To change the restart interval you need to change two things:
 1. in `/home/deck/Shortix/shortix.sh` - change the value of the TIME variable in minutes
 2. in `/home/deck/.config/systemd/user/shortix.service` - change the 1800s value to your desired value in seconds
+
+If you want you can also change the directory. For this modify the directory within the shortix.sh and also in the shortix.service file.
 
 You can also run the script manually either by using the terminal directly using this command: `/bin/bash /home/deck/Shortix/shortix.sh` or right click on the file and chosse "Run in Konsole".
 
