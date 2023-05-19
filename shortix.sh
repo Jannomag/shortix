@@ -9,8 +9,6 @@ TIME=15
 
 #Run the script if there's at least one directory newer than TIME variable (minutes).
 if [ $(find $COMPDATA -mmin -$TIME -type d) ]; then
-    #Create Shortix directory if not already present
-    mkdir -p $SHORTIX_DIR
 
     #Run protontricks to list all installed games and write the result into the temp file
     eval "$PROTONTRICKS" -l > $TEMPFILE
