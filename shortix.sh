@@ -20,12 +20,15 @@ shortix_script () {
     #Remove the "Non_Steam shortcut: " string from temp file
     sed -i 's/Non-Steam shortcut: //' $TEMPFILE
 
-    #Replace the opening round bracket with a simicolon in temp file - this is needed to reading the contents as variable later on
-    sed -i 's/ (/;/' $TEMPFILE
+    #Replace the the last occurence of a closing round bracket with a simicolon in esch line in temp file - this is needed to reading the contents as variable later on
+    sed -i 's/\(.*\))/\1;/' $TEMPFILE
 
-    #Do the same with the closing round bracket
-    sed -i 's/)/;/' $TEMPFILE
-
+    #Do the same with the last occurence of an opening round bracket
+    sed -i 's/\(.*\)(/\1;/' $TEMPFILE
+    
+    #Remove the trailing space after the game name
+    sed -i 's/ ;/;/' $TEMPFILE
+    
     #Remove non existant symlinks
     find -L $SHORTIX_DIR -maxdepth 1 -type l -delete
 
@@ -46,4 +49,3 @@ elif [ $(find $COMPDATA -mmin -$TIME -type d) ]; then
     shortix_script
 fi
 echo "Done, you can close this window now!"
-
