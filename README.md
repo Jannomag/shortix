@@ -1,4 +1,4 @@
-![Shortix](https://github.com/Jannomag/shortix/blob/70b21e950f71dfd89ada095197fba86fa4d580c4/shortix_logo.svg)     
+![Shortix](https://raw.githubusercontent.com/Jannomag/shortix/main/shortix_logo.svg)     
 A script that creates human readable symlinks for Proton game prefixes (Steam Deck / SteamOS)
 
 # Prerequireties
