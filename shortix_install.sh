@@ -4,8 +4,7 @@ if [ -d /home/deck/Shortix/ ] || [ -f /home/deck/.config/systemd/user/shortix.se
   echo "#   UPDATING SHORTIX   #"
   echo  "#######################"
   rm -rf /home/deck/Shortix
-  systemctl --user stop shortix.service 
-  systemctl --user disable shortix.service 
+  rm -rf /home/deck/.config/systemd/user/shortix.service
 else
   echo "##########################"
   echo "#   INSTALLING SHORTIX   #"
