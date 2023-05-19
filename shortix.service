@@ -1,0 +1,8 @@
+[Unit]
+Description=Shortix is a script that creates human readable symlinks for Proton prefixes on the Steam Deck
+
+[Service]
+ExecStart=/home/deck/Shortix/shortix.sh
+
+[Install]
+WantedBy=multi-user.target
