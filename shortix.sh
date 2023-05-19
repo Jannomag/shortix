@@ -3,7 +3,7 @@
 PROTONTRICKS="flatpak run com.github.Matoking.protontricks"
 SHORTIX_DIR=/home/deck/Shortix
 TEMPFILE=/tmp/shortix
-COMPDATA=/home/deck/.steam/steam/steamapps/compdata
+COMPDATA=/home/deck/.steam/steam/steamapps/compatdata
 
 TIME=15
 
