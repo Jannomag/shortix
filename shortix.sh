@@ -42,9 +42,8 @@ shortix_script () {
 if [ ! -f $FIRSTRUN ]; then
     shortix_script
     touch $FIRSTRUN
-    kill -9 $PPID
 elif [ $(find $COMPDATA -mmin -$TIME -type d) ]; then
     shortix_script
-    kill -9 $PPID
 fi
+echo "Done, you can close this window now!"
 
