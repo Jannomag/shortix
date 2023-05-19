@@ -20,7 +20,7 @@ shortix_script () {
     #Remove the "Non_Steam shortcut: " string from temp file
     sed -i 's/Non-Steam shortcut: //' $TEMPFILE
 
-    #Replace the last occurence of and brackets with a semicolon and remove trailing space in one go
+    #Replace the last occurence of closing and opening round brackets and replace them with semicolons and remove trailing space in one go
     sed -i -E 's/ \(([^)]+)\)$/;\1;/' $TEMPFILE
     
     #Remove non existant symlinks
