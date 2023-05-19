@@ -5,7 +5,6 @@ if [ -d /home/deck/Shortix/ ] || [ -f /home/deck/.config/systemd/user/shortix.se
   echo  "#######################"
   rm -rf /home/deck/Shortix
   systemctl --user disable shortix.service 2> /dev/null
-  rm -rf /home/deck/.config/systemd/user/shortix.service
   systemctl --user daemon-reload
 else
   echo "##########################"
