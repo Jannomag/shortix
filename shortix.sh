@@ -1,17 +1,18 @@
-#!/bin/bash
+#!/bin/sh
 #Set variables for all needed files an paths
 PROTONTRICKS="flatpak run com.github.Matoking.protontricks"
 SHORTIX_DIR=/home/deck/Shortix
-TEMPFILE=/tmp/shortix
+TEMPFILE=/tmp/shortix_temp
 COMPDATA=/home/deck/.steam/steam/steamapps/compatdata
+FIRSTRUN=/home/deck/Shortix/.shortix
 
 TIME=15
 
 #Run the script if there's at least one directory newer than TIME variable (minutes).
-if [ $(find $COMPDATA -mmin -$TIME -type d) ]; then
 
+shortix_script () {
     #Run protontricks to list all installed games and write the result into the temp file
-    eval "$PROTONTRICKS" -l > $TEMPFILE
+    eval "$PROTONTRICKS" -l > $TEMPFILE 2> /dev/null
 
     #remove all lines which doesn't have a round bracket in it
     sed -i -ne '/)/p' $TEMPFILE
@@ -35,4 +36,15 @@ if [ $(find $COMPDATA -mmin -$TIME -type d) ]; then
     do
         ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name"
     done < $TEMPFILE
+}
+
+
+if [ ! -f $FIRSTRUN ]; then
+    shortix_script
+    touch $FIRSTRUN
+    kill -9 $PPID
+elif [ $(find $COMPDATA -mmin -$TIME -type d) ]; then
+    shortix_script
+    kill -9 $PPID
 fi
+
