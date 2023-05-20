@@ -3,8 +3,8 @@ Description=Shortix is a script that creates human readable symlinks for Proton 
 
 [Service]
 Restart=always
-RestartSec=900s
-ExecStart=/bin/bash /home/deck/Shortix/shortix.sh
+RestartSec=1800s
+ExecStart=/bin/bash $HOME/Shortix/shortix.sh
 
 [Install]
 WantedBy=multi-user.target
