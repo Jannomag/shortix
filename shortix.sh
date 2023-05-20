@@ -13,9 +13,9 @@ TIME=15
 
 shortix_script () {
     #Check if and how protontricks is installed, if yes run in, if no, stop the script
-    if [ command -v $PROTONTRICKS_NATIVE ]; then
+    if [ "$(command -v $PROTONTRICKS_NATIVE)" ]; then
         PROTONTRICKS=$PROTONTRICKS_NATIVE
-    elif [ command -v $PROTONTRICKS_FLAT ]; then
+    elif [ "$(command -v $PROTONTRICKS_FLAT)" ]; then
         PROTONTRICKS=$PROTONTRICKS_FLAT
     else
         read -p "Protontricks could not be found! Please install it. Press ENTER to exit."
