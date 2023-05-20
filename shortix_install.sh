@@ -24,8 +24,10 @@ fi
 if [ -f $HOME/.config/user-dirs.dirs ]; then
   source $HOME/.config/user-dirs.dirs
   if [ $XDG_DESKTOP_DIR/shortix_installer.desktop ]; then
-    sed -i 's/Install/Update/' /tmp/shortix_installer.desktop
-    mv /tmp/shortix_installer.desktop $XDG_DESKTOP_DIR/shortix_updater.desktop
+    sed -i 's/Install/Update/' /tmp/shortix/shortix_installer.desktop
+    mv /tmp/shortix/shortix_installer.desktop $XDG_DESKTOP_DIR/shortix_updater.desktop
+    rm -rf $XDG_DESKTOP_DIR/shortix_installer.desktop
+    chmod +x $XDG_DESKTOP_DIR/shortix_updater.desktop
   fi
 fi
 systemctl --user restart shortix.service
