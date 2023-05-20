@@ -1,7 +1,8 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=Install Shortix
-Exec=rm -rf /tmp/shortix && git clone https://github.com/Jannomag/shortix /tmp/shortix && /bin/bash /tmp/shortix/shortix_install.sh
+Exec=rm -rf /tmp/shortix && git clone https://github.com/Jannomag/shortix /tmp/shortix && cp /tmp/shortix/shortix_icon.svg $HOME/.icons && /bin/bash /tmp/shortix/shortix_install.sh
 Terminal=True
 Type=Application
+Icon=shortix_icon.svg
 StartupNotify=False
