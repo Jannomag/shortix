@@ -1,19 +1,22 @@
 #/bin/bash
-if [ -d /home/deck/Shortix/ ] || [ -f /home/deck/.config/systemd/user/shortix.service ]; then
+if [ -d $HOME/Shortix/ ] || [ -f $HOME/.config/systemd/user/shortix.service ]; then
   echo "########################"
   echo "#   UPDATING SHORTIX   #"
   echo  "#######################"
-  rm -rf /home/deck/Shortix
+  rm -rf $HOME/Shortix
 else
   echo "##########################"
   echo "#   INSTALLING SHORTIX   #"
   echo "##########################"
 fi
 
-mkdir -p /home/deck/Shortix
-cp /tmp/shortix/shortix.sh /home/deck/Shortix
-chmod +x /home/deck/Shortix/shortix.sh
-cp /tmp/shortix/shortix.service /home/deck/.config/systemd/user
+mkdir -p $HOME/Shortix
+cp /tmp/shortix/shortix.sh $HOME/Shortix
+chmod +x $HOME/Shortix/shortix.sh
+if [ ! -d $HOME/.config/systemd/user ]; then
+    mkdir -p $HOME/.config/systems/user
+fi
+cp /tmp/shortix/shortix.service $HOME/.config/systemd/user
 systemctl --user daemon-reload
 if [ ! systemctl is-enabled --user  shortix.service ]; then
   systemctl --user enable shortix.service
