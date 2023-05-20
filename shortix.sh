@@ -1,17 +1,26 @@
 #!/bin/sh
 #Set variables for all needed files an paths
-PROTONTRICKS="flatpak run com.github.Matoking.protontricks"
-SHORTIX_DIR=/home/deck/Shortix
+PROTONTRICKS_NATIVE="protontricks"
+PROTONTRICKS_FLAT="flatpak run com.github.Matoking.protontricks"
+SHORTIX_DIR=$HOME/Shortix
 TEMPFILE=/tmp/shortix_temp
-COMPDATA=/home/deck/.steam/steam/steamapps/compatdata
-FIRSTRUN=/home/deck/Shortix/.shortix
+COMPDATA=$HOME/.steam/steam/steamapps/compatdata
+FIRSTRUN=$HOME/Shortix/.shortix
 
 TIME=15
 
 #Run the script if there's at least one directory newer than TIME variable (minutes).
 
 shortix_script () {
-    #Run protontricks to list all installed games and write the result into the temp file
+    #Check if and how protontricks is installed, if yes run in, if no, stop the script
+    if [ command -v $PROTONTRICKS_NATIVE ]; then
+        PROTONTRICKS=$PROTONTRICKS_NATIVE
+    elif [ command -v $PROTONTRICKS_FLAT ]; then
+        PROTONTRICKS=$PROTONTRICKS_FLAT
+    else
+        read -p "Protontricks could not be found! Please install it. Press ENTER to exit."
+        exit
+    fi
     eval "$PROTONTRICKS" -l > $TEMPFILE 2> /dev/null
 
     #remove all lines which doesn't have a round bracket in it
