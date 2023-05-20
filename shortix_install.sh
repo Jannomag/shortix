@@ -21,5 +21,8 @@ systemctl --user daemon-reload
 if [ ! systemctl is-enabled --user  shortix.service ]; then
   systemctl --user enable shortix.service
 fi
+if [ -f $HOME/Desktop/shortix_installer.desktop ]; then
+  sed -i 's/Install/Update/' $HOME/Desktop/shortix_installer.desktop
+fi
 systemctl --user restart shortix.service
 echo  "DONE!"
