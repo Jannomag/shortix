@@ -1,5 +1,5 @@
 ![Shortix](https://raw.githubusercontent.com/Jannomag/shortix/main/shortix_logo.svg)     
-A script that creates human readable symlinks for Proton game prefixes (Steam Deck / SteamOS)
+A script that creates human readable symlinks for Proton game prefixes
 
 # Prerequireties
 You need to install Protontricks from Discover on your Steam Deck, that's it.
@@ -21,7 +21,6 @@ In there you'll find all created symlinks / shortcuts to the installed games - w
 8. Start service with `systemctl --user start shortix.service`
 9. Done (all those steps does the `shortix_installer.sh` for you
 
-
 # Background and explanation
 I just wanted to have easier access to the prefixes for the games on my Steam Deck, so I created Shortix.
 What it does is really simple:
@@ -37,6 +36,11 @@ To change the restart interval you need to change two things:
 If you want you can also change the directory. For this modify the directory within the shortix.sh and also in the shortix.service file.
 
 You can also run the script manually either by using the terminal directly using this command: `/bin/bash /home/deck/Shortix/shortix.sh` or right click on the file and chosse "Run in Konsole".
+
+# Tested systems / distros
+- Steam Deck (SteamOS 3.4)
+- EndeavourOS
+- Ubuntu 22.04
 
 # Known issues
 ~~- if the name of a game contains round brackets, for example "Aaa aaa Aaa: Aaa Aaa (16-bit)" (thanks to [u/octopus_erectus](https://www.reddit.com/r/SteamDeck/comments/13luaiz/release_shortix_a_script_for_human_readable/jksiery/?utm_source=share&utm_medium=ios_app&utm_name=ioscss&utm_content=1&utm_term=1&context=3)) the script will fail. I will try to fix this when I find a bit time. For now a workaround can be to rename the games, but I don't know if this work for native Steam games.~~
