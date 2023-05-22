@@ -38,4 +38,4 @@ if [ -f $HOME/.config/user-dirs.dirs ]; then
   fi
 fi
 
-echo  "DONE!"
+read -p "Shortix is set up! Press ENTER to exit."
