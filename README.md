@@ -5,7 +5,7 @@ A script that creates human readable symlinks for Proton game prefixes (Steam De
 You need to install Protontricks from Discover on your Steam Deck, that's it.
 
 # Installation (Automatic)
-Download the [installer](https://github.com/Jannomag/shortix/releases/latest/download/shortix_installer.desktop "desktop") to the Desktop and double click it.   
+Download the [installer](https://github.com/Jannomag/shortix/releases/latest/download/shortix_installer.desktop) to the Desktop and double click it.   
 ##### Attention for Firefox users: I noticed that Firefox will append ".download" to the file. I don't know why, but you need to remove this, so the file is called "shortex_installer.desktop" in order to be executable.
 Afterwards there's a new directory in you home directory, called Shortix.    
 In there you'll find all created symlinks / shortcuts to the installed games - which were found by Protontricks.    
