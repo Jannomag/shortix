@@ -1,10 +1,12 @@
 [Unit]
 Description=Shortix is a script that creates human readable symlinks for Proton prefixes on the Steam Deck, it will restart every 15 Minutes
+StandardOutput=console
 
 [Service]
+Type=simple
 Restart=always
 RestartSec=1800s
-ExecStart=/bin/bash $HOME/Shortix/shortix.sh
+ExecStart=/bin/bash %h/Shortix/shortix.sh
 
 [Install]
 WantedBy=multi-user.target
