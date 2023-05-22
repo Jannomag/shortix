@@ -49,7 +49,7 @@ if [ ! -d $COMPDATA ]; then
 fi
 
 if [ ! -f $FIRSTRUN ]; then
-    echo shortix_script
+    shortix_script
     touch "$FIRSTRUN"
 else
     dorun=1
@@ -62,7 +62,7 @@ else
         fi
     fi
     if [ $dorun -eq 1 ]; then
-        echo shortix_script
+        shortix_script
     fi
 fi
 
