@@ -18,14 +18,22 @@ chmod +x $HOME/Shortix/shortix.sh
 read -e -n 1 -p "Would you like to setup system service for background updates [Y/n]: "
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   if [ ! -d $HOME/.config/systemd/user ]; then
-      mkdir -p $HOME/.config/systemd/user
+    mkdir -p $HOME/.config/systemd/user
   fi
   cp /tmp/shortix/shortix.service $HOME/.config/systemd/user
   systemctl --user daemon-reload
-  if [ ! systemctl is-enabled --user  shortix.service ]; then
+  if ! systemctl is-enabled --quiet --user shortix.service; then
     systemctl --user enable shortix.service
   fi
   systemctl --user restart shortix.service
+else
+  if systemctl is-enabled --quiet --user shortix.service; then
+    systemctl --user disable shortix.service
+  fi
+  if [ -f $HOME/.config/systemd/user/shortix.service ]; then
+    rm $HOME/.config/systemd/user/shortix.service
+  fi
+  systemctl --user daemon-reload
 fi
 
 if [ -f $HOME/.config/user-dirs.dirs ]; then
