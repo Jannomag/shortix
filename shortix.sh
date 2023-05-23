@@ -6,10 +6,7 @@ SHORTIX_DIR=$HOME/Shortix
 TEMPFILE=/tmp/shortix_temp
 COMPDATA=$HOME/.steam/steam/steamapps/compatdata
 FIRSTRUN=$HOME/Shortix/.shortix
-
-TIME=15
-
-#Run the script if there's at least one directory newer than TIME variable (minutes).
+LASTRUN=$HOME/Shortix/.shortix_last_run
 
 shortix_script () {
     #Check if and how protontricks is installed, if yes run in, if no, stop the script
@@ -18,7 +15,7 @@ shortix_script () {
     elif [ "$(command -v $PROTONTRICKS_FLAT)" ]; then
         PROTONTRICKS=$PROTONTRICKS_FLAT
     else
-        read -p "Protontricks could not be found! Please install it. Press ENTER to exit."
+        echo "Protontricks could not be found! Please install it. Aborting..."
         exit
     fi
     eval "$PROTONTRICKS" -l > $TEMPFILE 2> /dev/null
@@ -31,7 +28,7 @@ shortix_script () {
 
     #Replace the last occurence of closing and opening round brackets and replace them with semicolons and remove trailing space in one go
     sed -i -E 's/ \(([^)]+)\)$/;\1;/' $TEMPFILE
-    
+
     #Remove non existant symlinks
     find -L $SHORTIX_DIR -maxdepth 1 -type l -delete
 
@@ -42,13 +39,31 @@ shortix_script () {
     do
         ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name"
     done < $TEMPFILE
+
+    touch "$LASTRUN"
 }
 
+if [ ! -d $COMPDATA ]; then
+    echo "Steam compatibility data directory (${COMPDATA}) could not be found! Aborting..."
+    exit
+fi
 
 if [ ! -f $FIRSTRUN ]; then
     shortix_script
-    touch $FIRSTRUN
-elif [ $(find $COMPDATA -mmin -$TIME -type d) ]; then
-    shortix_script
+    touch "$FIRSTRUN"
+else
+    dorun=1
+    # if there is lastrun file, only run if there are compatdata folders newer than the lastrun file timestamp
+    if [ -f $LASTRUN ]; then
+        dorun=0
+        lastrun_timestamp=$(date +%s -r "$LASTRUN")
+        if [ "$(find $COMPDATA -newermt "@${lastrun_timestamp}" -type d)" ]; then
+            dorun=1
+        fi
+    fi
+    if [ $dorun -eq 1 ]; then
+        shortix_script
+    fi
 fi
+
 echo "Done, you can close this window now!"
