@@ -13,6 +13,7 @@ fi
 
 mkdir -p $HOME/Shortix
 cp /tmp/shortix/shortix.sh $HOME/Shortix
+cp /tmp/shortix/remove_prefix.sh $HOME/Shortix
 chmod +x $HOME/Shortix/shortix.sh
 
 read -e -n 1 -p "Would you like to setup system service for background updates [Y/n]: "
