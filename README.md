@@ -7,8 +7,16 @@ You need to install Protontricks from Discover on your Steam Deck, that's it.
 # Installation (Automatic)
 Download the [installer](https://github.com/Jannomag/shortix/releases/latest/download/shortix_installer.desktop) to the Desktop and double click it.   
 ##### Attention for Firefox users: I noticed that Firefox will append ".download" to the file. I don't know why, but you need to remove this, so the file is called "shortex_installer.desktop" in order to be executable.
+
+The installer will ask you if you want to install the Shortix service. This service allows Shortix to be run automatically, even in game mode.
+If you changed your mind about the service, just run the "Update Shortix" again.
+
 Afterwards there's a new directory in you home directory, called Shortix.    
-In there you'll find all created symlinks / shortcuts to the installed games - which were found by Protontricks.    
+In there you'll find all created symlinks / shortcuts to the installed games - which were found by Protontricks.  
+
+In the Shortix directory you'll also find the `shortix.sh` and `remove_prefix.sh` scripts.
+With `shortix.sh` you can run Shortix manually (run this in a Terminal or use right click and choose "Run in Konsole" if you're running KDE).
+For `remove_prefix.sh` read the tutorial below.
 
 # Manual installation
 1. Go to the /tmp folder using `cd /tmp`
@@ -36,6 +44,20 @@ To change the restart interval you need to change two things:
 If you want you can also change the directory. For this modify the directory within the shortix.sh and also in the shortix.service file.
 
 You can also run the script manually either by using the terminal directly using this command: `/bin/bash /home/deck/Shortix/shortix.sh` or right click on the file and chosse "Run in Konsole".
+
+# Prefix removal script
+I've added a script called `remove_prefix.sh` to the Shortix directory.
+This script allows you to remove not just the shortcut but also the whole prefix directory. 
+Run this script in a terminal (or do right click -> "Run in Konsole" for KDE / Steam Deck).
+Then you can drag an drop all shortcuts from the Shortix directory of which you want to remove the prefix directory.
+Afterwards press enter, the script will notify you about the paths.
+It will also ask you if you really want to delete them.
+**Pleas note: The deletion will remove the prefix completely! This will also remove savegames (except cloud saves) and other game specific user data - finally!**
+
+# Uninstall
+To uninstall run the "Update Shortix" from the desktop and choose "no" when the script asks you if you want to install the service.
+Afterwards delete the Shortix directory in your home directory and the "Update Shortix" from desktop.
+That's it.
 
 # Tested systems / distros
 - Steam Deck (SteamOS 3.4)
