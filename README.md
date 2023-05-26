@@ -8,7 +8,10 @@ You need to install Protontricks from Discover on your Steam Deck, that's it.
 Download the [installer](https://github.com/Jannomag/shortix/releases/latest/download/shortix_installer.desktop) to the Desktop and double click it.    
 ##### Attention for Firefox users: I noticed that Firefox will append ".download" to the file. I don't know why, but you need to remove this, so the file is called "shortex_installer.desktop" in order to be executable.    
 
-The installer will ask you if you want to install the Shortix service. This service allows Shortix to be run automatically, even in game mode.    
+The installer will you ask you two things:
+- Add prefix id to the game name - this will make the shortcuts look like this: `Game Name (12345678)`
+- Install the Shortix service - this will allow Shortix to be executed automatically after a time interval (default is 30 Minutes). This will work in Game Mode as well.
+  
 If you changed your mind about the service, just run the "Update Shortix" again.
 
 Afterwards there's a new directory in you home directory, called Shortix.    
