@@ -5,17 +5,17 @@ A script that creates human readable symlinks for Proton game prefixes
 You need to install Protontricks from Discover on your Steam Deck, that's it.
 
 # Installation (Automatic)
-Download the [installer](https://github.com/Jannomag/shortix/releases/latest/download/shortix_installer.desktop) to the Desktop and double click it.   
-##### Attention for Firefox users: I noticed that Firefox will append ".download" to the file. I don't know why, but you need to remove this, so the file is called "shortex_installer.desktop" in order to be executable.
+Download the [installer](https://github.com/Jannomag/shortix/releases/latest/download/shortix_installer.desktop) to the Desktop and double click it.    
+##### Attention for Firefox users: I noticed that Firefox will append ".download" to the file. I don't know why, but you need to remove this, so the file is called "shortex_installer.desktop" in order to be executable.    
 
-The installer will ask you if you want to install the Shortix service. This service allows Shortix to be run automatically, even in game mode.
+The installer will ask you if you want to install the Shortix service. This service allows Shortix to be run automatically, even in game mode.    
 If you changed your mind about the service, just run the "Update Shortix" again.
 
 Afterwards there's a new directory in you home directory, called Shortix.    
 In there you'll find all created symlinks / shortcuts to the installed games - which were found by Protontricks.  
 
-In the Shortix directory you'll also find the `shortix.sh` and `remove_prefix.sh` scripts.
-With `shortix.sh` you can run Shortix manually (run this in a Terminal or use right click and choose "Run in Konsole" if you're running KDE).
+In the Shortix directory you'll also find the `shortix.sh` and `remove_prefix.sh` scripts.    
+With `shortix.sh` you can run Shortix manually (run this in a Terminal or use right click and choose "Run in Konsole" if you're running KDE).    
 For `remove_prefix.sh` read the tutorial below.
 
 # Manual installation
