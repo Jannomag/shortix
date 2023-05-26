@@ -16,6 +16,13 @@ cp /tmp/shortix/shortix.sh $HOME/Shortix
 cp /tmp/shortix/remove_prefix.sh $HOME/Shortix
 chmod +x $HOME/Shortix/shortix.sh
 
+read -e -n 1 -p "Would you like to add the prefix id to the shortcut name (Like 'Game Name (123455678)')? [Y/n]: "
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+  if [ ! -f $HOME/Shortix/.id ]; then
+    touch $HOME/Shortix/.id
+  fi
+fi   
+
 read -e -n 1 -p "Would you like to setup system service for background updates [Y/n]: "
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
   if [ ! -d $HOME/.config/systemd/user ]; then
