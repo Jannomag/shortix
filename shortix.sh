@@ -5,6 +5,8 @@ PROTONTRICKS_FLAT="flatpak run com.github.Matoking.protontricks"
 SHORTIX_DIR=$HOME/Shortix
 TEMPFILE=/tmp/shortix_temp
 COMPDATA=$HOME/.steam/steam/steamapps/compatdata
+SHADER_DIR=$HOME/.steam/steam/steamapps/shadercache
+SHADER_SHORTIX=$SHORTIX_DIR/_Shaders
 FIRSTRUN=$HOME/Shortix/.shortix
 LASTRUN=$HOME/Shortix/.shortix_last_run
 
@@ -36,18 +38,24 @@ shortix_script () {
     #Create symlinks based on the data from the temp file.
     #IFS defines the semicolon as column separator
     #Then read the both columns as variables and create symlinks based on the data of each line
+    #Also create the _Shader directory and create symlinks to the shadercache directories.
+    #Some games don't use shadercache, if so, the dead end symlink will be removed directly
+    mkdir -p $SHADER_SHORTIX
     if [ -f $SHORTIX_DIR/.id ]; then
         while IFS=';' read game_name prefix_id
         do
             ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name ($prefix_id)"
+            ln -sf "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name ($prefix_id)"
+            find -L $SHADER_SHORTIX -maxdepth 1 -type l -delete
         done < $TEMPFILE
     else
         while IFS=';' read game_name prefix_id
         do
             ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name"
+            ln -sf "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name"
+            find -L $SHADER_SHORTIX -maxdepth 1 -type l -delete
         done < $TEMPFILE
     fi
-
 
     touch "$LASTRUN"
 }
