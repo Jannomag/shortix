@@ -16,6 +16,7 @@ If you changed your mind about the service, just run the "Update Shortix" again.
 
 Afterwards there's a new directory in you home directory, called Shortix.    
 In there you'll find all created symlinks / shortcuts to the installed games - which were found by Protontricks.  
+You'll also find a subdirectory called "\_Shaders". In there you'll find shortcuts to all available shadercache directories.
 
 In the Shortix directory you'll also find the `shortix.sh` and `remove_prefix.sh` scripts.    
 With `shortix.sh` you can run Shortix manually (run this in a Terminal or use right click and choose "Run in Konsole" if you're running KDE).    
@@ -50,12 +51,13 @@ You can also run the script manually either by using the terminal directly using
 
 # Prefix removal script
 I've added a script called `remove_prefix.sh` to the Shortix directory.    
-This script allows you to remove not just the shortcut but also the whole prefix directory.     
+This script allows you to remove not just the shortcut but also the whole prefix directory.  
+This will also work for shadercache shortcuts, just drag&drop those instead.
 Run this script in a terminal (or do right click -> "Run in Konsole" for KDE / Steam Deck).    
 Then you can drag an drop all shortcuts from the Shortix directory of which you want to remove the prefix directory.    
 Afterwards press enter, the script will notify you about the paths.    
 It will also ask you if you really want to delete them.    
-**Pleas note: The deletion will remove the prefix completely! This will also remove savegames (except cloud saves) and other game specific user data - finally!**
+**Pleas note: The deletion will remove the prefix / shadercache completely! This will also remove savegames (except cloud saves) and other game specific user data - finally!**
 
 # Uninstall
 To uninstall run the "Update Shortix" from the desktop and choose "no" when the script asks you if you want to install the service.
