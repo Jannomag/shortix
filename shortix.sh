@@ -40,14 +40,32 @@ shortix_script () {
     #Then read the both columns as variables and create symlinks based on the data of each line
     #Also create the _Shader directory and create symlinks to the shadercache directories.
     #Some games don't use shadercache, if so, the dead end symlink will be removed directly
+    #If .size file is found add the size to the file name
     mkdir -p $SHADER_SHORTIX
     if [ -f $SHORTIX_DIR/.id ]; then
-        while IFS=';' read game_name prefix_id
-        do
-            ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name ($prefix_id)"
-            ln -sf "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name ($prefix_id)"
-            find -L $SHADER_SHORTIX -maxdepth 1 -type l -delete
-        done < $TEMPFILE
+        if [ -f $SHORTIX_DIR/.size ]; then
+            while IFS=';' read game_name prefix_id
+            do
+                ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name ($prefix_id)"
+                find $SHORTIX_DIR -maxdepth 1 -type l -exec bash -c '
+                    SIZE=$(du -shH "$1" | cut -f1)
+                    mv "$1" "$1 - $SIZE"
+                ' -- {} \;
+                ln -sf "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name ($prefix_id)"
+                find -L $SHADER_SHORTIX -maxdepth 1 -type l -delete
+                find $SHADER_SHORTIX -maxdepth 1 -type l -exec bash -c '
+                    SIZE=$(du -shH "$1" | cut -f1)
+                    mv "$1" "$1 - $SIZE"
+                ' -- {} \;
+            done < $TEMPFILE
+        else
+            while IFS=';' read game_name prefix_id
+            do
+                ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name ($prefix_id)"
+                ln -sf "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name ($prefix_id)"
+                find -L $SHADER_SHORTIX -maxdepth 1 -type l -delete
+            done < $TEMPFILE
+        fi
     else
         while IFS=';' read game_name prefix_id
         do
