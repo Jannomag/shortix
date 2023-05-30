@@ -21,12 +21,33 @@ read -e -n 1 -p "Would you like to add the prefix id to the shortcut name (Like 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   if [ ! -f $HOME/Shortix/.id ]; then
     touch $HOME/Shortix/.id
+    read -e -n 1 -p "Would you also like to add the size of the target directory to the shortcut name (Like 'Game Name (123455678) - 1.6G')? [Y/n]: "
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      if [ ! -f $HOME/Shortix/.size ]; then
+        touch $HOME/Shortix/.size
+      fi
+    elif [[ $REPLY =~ ^[Nn]$ ]]; then
+      if [ -f $HOME/Shortix/.size ]; then
+        rm -rf $HOME/Shortix/.size
+      fi
+    fi   
   fi
 elif [[ $REPLY =~ ^[Nn]$ ]]; then
   if [ -f $HOME/Shortix/.id ]; then
     rm -rf $HOME/Shortix/.id
+    read -e -n 1 -p "Would you also like to add the size of the target directory to the shortcut name (Like 'Game Name - 1.6G')? [Y/n]: "
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      if [ ! -f $HOME/Shortix/.size ]; then
+        touch $HOME/Shortix/.size
+      fi
+    elif [[ $REPLY =~ ^[Nn]$ ]]; then
+      if [ -f $HOME/Shortix/.size ]; then
+        rm -rf $HOME/Shortix/.size
+      fi
+    fi 
   fi
 fi   
+
 
 read -e -n 1 -p "Would you like to setup system service for background updates [Y/n]: "
 if [[ ! $REPLY =~ ^[Nn]$ ]]; then
