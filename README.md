@@ -8,8 +8,9 @@ You need to install Protontricks from Discover on your Steam Deck, that's it.
 Download the [installer](https://github.com/Jannomag/shortix/releases/latest/download/shortix_installer.desktop) to the Desktop and double click it.    
 ##### Attention for Firefox users: I noticed that Firefox will append ".download" to the file. I don't know why, but you need to remove this, so the file is called "shortex_installer.desktop" in order to be executable.    
 
-The installer will you ask you two things:
+The installer will you ask you three things:
 - Add prefix id to the game name - this will make the shortcuts look like this: `Game Name (12345678)`
+- Add size of the target to the game name - this will make the shortcut look like this: `Game Name (12345678) - 1.6G` (or `Game Name - 1.6G` if you disabled prefix ids).
 - Install the Shortix service - this will allow Shortix to be executed automatically after a time interval (default is 30 Minutes). This will work in Game Mode as well.
   
 If you changed your mind about the service, just run the "Update Shortix" again.
@@ -21,6 +22,11 @@ You'll also find a subdirectory called "\_Shaders". In there you'll find shortcu
 In the Shortix directory you'll also find the `shortix.sh` and `remove_prefix.sh` scripts.    
 With `shortix.sh` you can run Shortix manually (run this in a Terminal or use right click and choose "Run in Konsole" if you're running KDE).    
 For `remove_prefix.sh` read the tutorial below.
+(Please note: in the directory you will find several hidden files, currently possible are: `.shortix`, `.shortix_last_run`, `.id`, `.size`.
+Those files are needed by the script as settings files, don't delete them!).
+
+If you want to rerun the script manually, just delete all symlinks and the hidden files `.shortix` and `.shortix_last_run`. Both files are settings file for letting the script know if it already ran at least once. Then just run the shortix.sh in a terminal.   
+If you don't want ids or sizes to be added anymore, delete `.id` or/and `.size` and do the rerun thing from the line above.    
 
 # Manual installation
 1. Go to the /tmp folder using `cd /tmp`
