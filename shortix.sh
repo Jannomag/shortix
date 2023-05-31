@@ -46,17 +46,19 @@ shortix_script () {
         if [ -f $SHORTIX_DIR/.size ]; then
             while IFS=';' read game_name prefix_id
             do
-                ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name ($prefix_id)"
-                find $SHORTIX_DIR -maxdepth 1 -type l -exec bash -c '
-                    SIZE=$(du -shH "$1" | cut -f1)
-                    mv "$1" "$1 - $SIZE"
-                ' -- {} \;
-                ln -sf "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name ($prefix_id)"
-                find -L $SHADER_SHORTIX -maxdepth 1 -type l -delete
-                find $SHADER_SHORTIX -maxdepth 1 -type l -exec bash -c '
-                    SIZE=$(du -shH "$1" | cut -f1)
-                    mv "$1" "$1 - $SIZE"
-                ' -- {} \;
+                target="$SHORTIX_DIR/$game_name ($prefix_id)"
+                if [[ ! $target =~ \ -\ [0-9.]+[A-Z] ]]; then
+                    ln -sf "$COMPDATA/$prefix_id" "$target"
+                    SIZE=$(du -shH "$target" | cut -f1)
+                    mv "$target" "$target - $SIZE"
+                fi
+
+                target="$SHADER_SHORTIX/$game_name ($prefix_id)"
+                if [[ ! $target =~ \ -\ [0-9.]+[A-Z] ]]; then
+                    ln -sf "$SHADER_DIR/$prefix_id" "$target"
+                    SIZE=$(du -shH "$target" | cut -f1)
+                    mv "$target" "$target - $SIZE"
+                fi
             done < $TEMPFILE
         else
             while IFS=';' read game_name prefix_id
