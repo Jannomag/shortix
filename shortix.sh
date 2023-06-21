@@ -28,6 +28,9 @@ shortix_script () {
     #Remove the "Non_Steam shortcut: " string from temp file
     sed -i 's/Non-Steam shortcut: //' $TEMPFILE
 
+    #Remove semicolons from game names because we use semicolons as separator later on
+    sed -i -E 's/\;/ /g' $TEMPFILE
+
     #Replace the last occurence of closing and opening round brackets and replace them with semicolons and remove trailing space in one go
     sed -i -E 's/ \(([^)]+)\)$/;\1;/' $TEMPFILE
 
