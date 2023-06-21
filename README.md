@@ -76,9 +76,9 @@ That's it.
 - Ubuntu 22.04
 
 # Known issues
-~~- if the name of a game contains round brackets, for example "Aaa aaa Aaa: Aaa Aaa (16-bit)" (thanks to [u/octopus_erectus](https://www.reddit.com/r/SteamDeck/comments/13luaiz/release_shortix_a_script_for_human_readable/jksiery/?utm_source=share&utm_medium=ios_app&utm_name=ioscss&utm_content=1&utm_term=1&context=3)) the script will fail. I will try to fix this when I find a bit time. For now a workaround can be to rename the games, but I don't know if this work for native Steam games.~~
+- ~~- if the name of a game contains round brackets, for example "Aaa aaa Aaa: Aaa Aaa (16-bit)" (thanks to [u/octopus_erectus](https://www.reddit.com/r/SteamDeck/comments/13luaiz/release_shortix_a_script_for_human_readable/jksiery/?utm_source=share&utm_medium=ios_app&utm_name=ioscss&utm_content=1&utm_term=1&context=3)) the script will fail. I will try to fix this when I find a bit time. For now a workaround can be to rename the games, but I don't know if this work for native Steam games.~~
 (fixed)
-~~- It can happen that some games with strange characters will cause problems. To keep Shortix working I decided to remove semicolons from game names before it will link anything (this will just affect the shortcut names, not the actual game name in steam or wherever!). If you notice such problems, please feel free to open an issue. I can't test it with every game on steam, of course. (fixed, I guess)
+- It can happen that some games with strange characters will cause problems. To keep Shortix working I decided to remove semicolons from game names before it will link anything (this will just affect the shortcut names, not the actual game name in steam or wherever!). If you notice such problems, please feel free to open an issue. I can't test it with every game on steam, of course. (fixed, I guess)
 
 # Contribution
 If you have any suggestions, let me know!
