@@ -37,7 +37,7 @@ shortix_script () {
     #Remove non existant symlinks
     find -L $SHORTIX_DIR -maxdepth 1 -type l -delete
 
-    # Chkef if the .id file is present. If true, then append the prefix id to the game name.
+    # Check if the .id file is present. If true, then append the prefix id to the game name.
     #Create symlinks based on the data from the temp file.
     #IFS defines the semicolon as column separator
     #Then read the both columns as variables and create symlinks based on the data of each line
@@ -104,7 +104,19 @@ shortix_script () {
 
     fi
 
+    if [ -f $SHORTIX_DIR/.backup ]; then
+
+            BACKUP_DIR=$(cat $SHORTIX_DIR/.backup)
+            if [ -d "$BACKUP_DIR" ]; then
+                rm -rf $BACKUP_DIR
+            fi
+            mkdir -p "$BACKUP_DIR"
+            cp -aR $SHORTIX_DIR/* "$BACKUP_DIR"
+
+    fi
+
     touch "$LASTRUN"
+
 
 }
 
@@ -130,5 +142,8 @@ else
         shortix_script
     fi
 fi
+
+
+
 
 echo "Done, you can close this window now!"
