@@ -78,6 +78,22 @@ case $? in
     ;;
 esac
 
+kdialog --title "Shortix Backup" --yesno "Would you like to create a backup of Shortix on a different location?\nIf yes, please create and select the backup directory in the next window."
+case $? in
+  0)  if [ ! -f $HOME/Shortix/.backup ]; then
+        touch $HOME/Shortix/.backup
+      fi
+      ;;
+  1)  if [ -f $HOME/Shortix/.backup ]; then
+        rm -rf $HOME/Shortix/.backup
+      fi
+      ;;
+esac
+
+
+if [ -f $HOME/Shortix/.backup ]; then
+  kdialog --getexistingdirectory . > $HOME/Shortix/.backup
+fi
 
 if [ -f $HOME/.config/user-dirs.dirs ]; then
   source $HOME/.config/user-dirs.dirs
