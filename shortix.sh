@@ -9,6 +9,7 @@ SHADER_DIR=$HOME/.steam/steam/steamapps/shadercache
 SHADER_SHORTIX=$SHORTIX_DIR/_Shaders
 FIRSTRUN=$HOME/Shortix/.shortix
 LASTRUN=$HOME/Shortix/.shortix_last_run
+LINK_COMMAND="ln -sTf"
 
 shortix_script () {
     #Check if and how protontricks is installed, if yes run in, if no, stop the script
@@ -51,7 +52,7 @@ shortix_script () {
             do
                 target="$SHORTIX_DIR/$game_name ($prefix_id)"
                 if [[ ! $target =~ \ -\ [0-9.]+[A-Z] ]]; then
-                    ln -sf "$COMPDATA/$prefix_id" "$target"
+                    $LINK_COMMAND "$COMPDATA/$prefix_id" "$target"
                     SIZE=$(du -shH "$COMPDATA/$prefix_id" | cut -f1)
                     mv "$target" "$target - $SIZE"
                 fi
@@ -59,7 +60,7 @@ shortix_script () {
                 target="$SHADER_SHORTIX/$game_name ($prefix_id)"
                 if [[ ! $target =~ \ -\ [0-9.]+[A-Z] ]]; then
                     if [ -d $SHADER_DIR/$prefix_id ]; then
-                        ln -sf "$SHADER_DIR/$prefix_id" "$target"
+                        $LINK_COMMAND "$SHADER_DIR/$prefix_id" "$target"
                         SIZE=$(du -shH "$target" | cut -f1)
                         mv "$target" "$target - $SIZE"
                     fi
@@ -69,8 +70,8 @@ shortix_script () {
         else
             while IFS=';' read game_name prefix_id
             do
-                ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name ($prefix_id)"
-                ln -sf "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name ($prefix_id)"
+                $LINK_COMMAND "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name ($prefix_id)"
+                $LINK_COMMAND "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name ($prefix_id)"
                 find -L $SHADER_SHORTIX -maxdepth 1 -type l -delete
             done < $TEMPFILE
         fi
@@ -79,7 +80,7 @@ shortix_script () {
         do
             target="$SHORTIX_DIR/$game_name"
             if [[ ! $target =~ \ -\ [0-9.]+[A-Z] ]]; then
-                ln -sf "$COMPDATA/$prefix_id" "$target"
+                $LINK_COMMAND "$COMPDATA/$prefix_id" "$target"
                 SIZE=$(du -shH "$COMPDATA/$prefix_id" | cut -f1)
                 mv "$target" "$target - $SIZE"
             fi
@@ -87,7 +88,7 @@ shortix_script () {
             target="$SHADER_SHORTIX/$game_name"
             if [[ ! $target =~ \ -\ [0-9.]+[A-Z] ]]; then
                 if [ -d $SHADER_DIR/$prefix_id ]; then
-                    ln -sf "$SHADER_DIR/$prefix_id" "$target"
+                    $LINK_COMMAND "$SHADER_DIR/$prefix_id" "$target"
                     SIZE=$(du -shH "$target" | cut -f1)
                     mv "$target" "$target - $SIZE"
                 fi
@@ -97,8 +98,8 @@ shortix_script () {
     else
         while IFS=';' read game_name prefix_id
         do
-            ln -sf "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name"
-            ln -sf "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name"
+            $LINK_COMMAND "$COMPDATA/$prefix_id" "$SHORTIX_DIR/$game_name"
+            $LINK_COMMAND "$SHADER_DIR/$prefix_id" "$SHADER_SHORTIX/$game_name"
             find -L $SHADER_SHORTIX -maxdepth 1 -type l -delete
         done < $TEMPFILE
 
