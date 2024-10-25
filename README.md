@@ -2,7 +2,7 @@
 A script that creates human readable symlinks for Proton game prefixes
 
 # Latest update
-- fixed nested symlink by using `ln -sTf` instead of just `ln -sf`. This was mentioned by @MKReyesH in #8. Thanks for this!
+- fixed nested symlink by using `ln -sTf` instead of just `ln -sf`. This was mentioned by [@MKReyesH](https://github.com/MKReyesH) in issue [#8](https://github.com/Jannomag/shortix/issues/8). Thanks for this!
   
 # Prerequireties
 You need to install Protontricks from Discover on your Steam Deck, that's it.
