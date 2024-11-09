@@ -2,6 +2,7 @@
 #Set variables for all needed files an paths
 PROTONTRICKS_NATIVE="protontricks"
 PROTONTRICKS_FLAT="flatpak run com.github.Matoking.protontricks"
+PROTONTRICKS_FLATID="com.github.Matoking.protontricks"
 SHORTIX_DIR=$HOME/Shortix
 TEMPFILE=/tmp/shortix_temp
 COMPDATA=$HOME/.steam/steam/steamapps/compatdata
@@ -15,7 +16,7 @@ shortix_script () {
     #Check if and how protontricks is installed, if yes run in, if no, stop the script
     if [ "$(command -v $PROTONTRICKS_NATIVE)" ]; then
         PROTONTRICKS=$PROTONTRICKS_NATIVE
-    elif [ "$(command -v $PROTONTRICKS_FLAT)" ]; then
+    elif [ "$(flatpak info "$PROTONTRICKS_FLATID" >/dev/null 2>&1 && echo "true")" ]; then
         PROTONTRICKS=$PROTONTRICKS_FLAT
     else
         echo "Protontricks could not be found! Please install it. Aborting..."
