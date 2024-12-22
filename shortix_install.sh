@@ -54,8 +54,10 @@ fi
 mkdir -p $HOME/Shortix
 cp /tmp/shortix/shortix.sh $HOME/Shortix
 cp /tmp/shortix/remove_prefix.sh $HOME/Shortix
+p /tmp/shortix/shortix_uninstall.sh $HOME/Shortix
 chmod +x $HOME/Shortix/shortix.sh
 chmod +x $HOME/Shortix/remove_prefix.sh
+chmod +x $HOME/Shortix/shortix_uninstall.sh
 
 
 if [ $USEKDIALOG == true ]; then
