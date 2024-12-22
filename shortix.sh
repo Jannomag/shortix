@@ -107,14 +107,13 @@ shortix_script () {
     fi
 
     if [ -f $SHORTIX_DIR/.backup ]; then
-
-            BACKUP_DIR=$(cat $SHORTIX_DIR/.backup)
+            BACKUP_DIR=$(cat $SHORTIX_DIR/.backup)/Shortix-Backup
             if [ -d "$BACKUP_DIR" ]; then
                 rm -rf $BACKUP_DIR
             fi
             mkdir -p "$BACKUP_DIR"
-            cp -aR $SHORTIX_DIR/* "$BACKUP_DIR"
-
+            cp -apR $SHORTIX_DIR/* "$BACKUP_DIR"
+            cp -apR $SHORTIX_DIR/.* "$BACKUP_DIR"
     fi
 
     touch "$LASTRUN"
