@@ -218,7 +218,7 @@ if [ $USEKDIALOG == true ]; then
 	  mkdir -p $(cat $HOME/Shortix/.backup)/Shortix-Backup
 	fi
 else
-	if [ -f $HOME/Shortix/.backup]; then
+	if [ -f $HOME/Shortix/.backup ]; then
  	read -p "Please enter your path where the Shortix-Backup directory should be created (like '/home/deck'): " backdir
   	mkdir -p $backdir/Shortix-Backup
 fi
