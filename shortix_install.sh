@@ -185,7 +185,7 @@ else
 fi
 
 if [ $USEKDIALOG == true ]; then
-	kdialog --title "Shortix Backup" --yesno "Would you like to create a backup of Shortix on a different location?\nIf yes, please create and select the backup directory in the next window." yn
+	kdialog --title "Shortix Backup" --yesno "Would you like to create a backup of Shortix on a different location?\nIf yes, please select the location where the Shortix-Backup directory should be created."
 	case $? in
 	  0)  if [ ! -f $HOME/Shortix/.backup ]; then
 		touch $HOME/Shortix/.backup
@@ -197,7 +197,7 @@ if [ $USEKDIALOG == true ]; then
 	      ;;
 	esac
 else
-	read -p "Would you like to create a backup of Shortix on a different location? If yes, please create and select the backup directory in the next window. " yn
+	read -p "Would you like to create a backup of Shortix on a different location?" yn
 	case $yn in
 	  yY)  if [ ! -f $HOME/Shortix/.backup ]; then
 		touch $HOME/Shortix/.backup
@@ -213,8 +213,14 @@ fi
 if [ $USEKDIALOG == true ]; then
 	if [ -f $HOME/Shortix/.backup ]; then
 	  kdialog --getexistingdirectory . > $HOME/Shortix/.backup
+	  mkdir -p $(cat $HOME/Shortix/.backup)/Shortix-Backup
 	fi
+else
+	if [ -f $HOME/Shortix/.backup]; then
+ 	read -p "Please enter your path where the Shortix-Backup directory should be created (like '/home/deck'): " backdir
+  	mkdir -p $backdir/Shortix-Backup
 fi
+
 
 if [ -f $HOME/.config/user-dirs.dirs ]; then
   source $HOME/.config/user-dirs.dirs
